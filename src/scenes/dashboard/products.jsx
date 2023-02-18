@@ -36,8 +36,8 @@ const ProductTable = ({fetchProductData, alarmPlaying, playAlarm, stopAlarm, pro
     console.log(`Fetch Product Data From: ${process.env.REACT_APP_DB_URL}/products`);
     fetchProductData();
 
-    console.log(`Fetch Stream Events Data From: ${process.env.REACT_APP_LOCAK_BACKEND_API}/events`);
-    const eventSource = new EventSource(`${process.env.REACT_APP_LOCAK_BACKEND_API}/events`);
+    console.log(`Fetch Stream Events Data From: ${process.env.REACT_APP_BACKEND_API}/events`);
+    const eventSource = new EventSource(`${process.env.REACT_APP_BACKEND_API}/events`);
     eventSource.onerror = (err) => {
       console.log('There was an error from server', err);
       setLoadingMessage('There was an error from Shop-Monitor-Backend Server. Please contact Admin for more information');
@@ -56,17 +56,19 @@ const ProductTable = ({fetchProductData, alarmPlaying, playAlarm, stopAlarm, pro
     eventSource.onmessage = (event) =>  {
       setProductLoading(false);
       const product = JSON.parse(event.data); 
-      
+    
       setProducts(products => products.map(function(data) {
         if(data.id === product.id){
           if(product.event_type === "alarm"){
             console.log("RECEIVE ALARM EVENT FROM SHOP-MONITOR BACKEND SERVER");
             playAlarm();
+            data.notify = product.notify;
           }
           data.status = product.status;
         }
         return data;
         }));
+      
     }
   }, [playAlarm, fetchProductData, setProducts]);
 
