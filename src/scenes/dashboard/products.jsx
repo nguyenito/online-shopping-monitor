@@ -11,7 +11,7 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import NotificationsOffIcon from '@mui/icons-material/NotificationsOff';
 import {motion} from 'framer-motion';
 
-const ProductTable = ({fetchProductData, alarmPlaying, playAlarm, stopAlarm, products, setProducts, productsLoaded}) => {
+const ProductTable = ({fetchProductData, alarmPlaying, playAlarm, stopAlarm, products, setProducts, productsLoaded, setBackendServerHeartbeat}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   // const [products, setProducts] = useState([]);
@@ -54,6 +54,7 @@ const ProductTable = ({fetchProductData, alarmPlaying, playAlarm, stopAlarm, pro
     };
 
     eventSource.onmessage = (event) =>  {
+      setBackendServerHeartbeat((prev) => prev+1);
       setProductLoading(false);
       const product = JSON.parse(event.data); 
     

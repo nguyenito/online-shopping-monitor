@@ -6,7 +6,7 @@ import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 const Topbar = ({products}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -16,6 +16,9 @@ const Topbar = ({products}) => {
   
   const navigateToFormEmail = () => {
     navigate('/form_email');
+  };
+  const navigateToHome = () => {
+    navigate('/');
   };
 
   useEffect(() => {
@@ -42,6 +45,9 @@ const Topbar = ({products}) => {
 
       {/* ICONS */}
       <Box display="flex">
+      <IconButton onClick={navigateToHome}>
+          <HomeOutlinedIcon />
+        </IconButton>
         <IconButton onClick={colorMode.toggleColorMode}>
           {theme.palette.mode === "dark" ? (
             <DarkModeOutlinedIcon />

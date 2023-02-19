@@ -7,6 +7,7 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 const Form = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
@@ -83,14 +84,14 @@ const Form = () => {
     }
   };
 
-  const navigateToHome = () => {
-    navigate('/');
+  const navigateToDashboard = () => {
+    navigate('/dashboard');
   };
 
   return (
     <Box m="20px">
         <Box>
-        <Button onClick={navigateToHome}
+        <Button onClick={navigateToDashboard}
                     sx={{
                     backgroundColor: colors.blueAccent[700],
                     color: colors.grey[100],
@@ -99,8 +100,8 @@ const Form = () => {
                     padding: "10px 20px",
                     }}
             >
-                <HomeOutlinedIcon sx={{ mr: "15px" }} />
-                HOME
+                <DashboardOutlinedIcon sx={{ mr: "15px" }} />
+                DASHBOARD
             </Button>
         </Box>
         
@@ -163,7 +164,7 @@ const Form = () => {
             {displaySuccess && <Alert 
                                 severity="success"
                                 action={
-                                    <Button onClick={navigateToHome}
+                                    <Button onClick={navigateToDashboard}
                                     sx={{
                                     backgroundColor: colors.blueAccent[700],
                                     color: colors.grey[100],
@@ -172,7 +173,7 @@ const Form = () => {
                                     padding: "10px 20px",
                                     }}
                             >
-                            Go Back Home
+                            Go Back Dashboard
                             </Button>
                                   }>
                                 Added Product To Watcher Successfully</Alert>}

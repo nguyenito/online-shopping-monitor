@@ -9,6 +9,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 
 const FormEmail = () => {
   const theme = useTheme();
@@ -62,14 +63,14 @@ const FormEmail = () => {
     window.location.reload();
   };
 
-  const navigateToHome = () => {
-    navigate('/');
+  const navigateToDashboard = () => {
+    navigate('/dashboard');
   };
 
   return (
     <Box m="20px">
         <Box>
-        <Button onClick={navigateToHome}
+        <Button onClick={navigateToDashboard}
                     sx={{
                     backgroundColor: colors.blueAccent[700],
                     color: colors.grey[100],
@@ -78,8 +79,8 @@ const FormEmail = () => {
                     padding: "10px 20px",
                     }}
             >
-                <HomeOutlinedIcon sx={{ mr: "15px" }} />
-                HOME
+                <DashboardOutlinedIcon sx={{ mr: "15px" }} />
+                DASHBOARD
             </Button>
         </Box> 
         <Header title="REGISTER NOTIFICATION EMAIL" subtitle="Key In Notification Email" />

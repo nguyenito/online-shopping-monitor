@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Topbar from './scenes/global/Topbar';
 import Dashboard from './scenes/dashboard';
+import HomepageCard from './scenes/global/Homepage';
 import {
   CssBaseline,
   ThemeProvider,
@@ -51,17 +52,18 @@ function App() {
         <CssBaseline />
         <div className="app">
           <main className="content">
-            {!productsLoaded && (
+            {/* {!productsLoaded && (
               <Alert variant="filled" severity="error">
                 <AlertTitle>Error</AlertTitle>
                 Producst data is not loaded
               </Alert>
-            )}
+            )} */}
 
             <Topbar products={products} />
             <Routes>
+              <Route path="/" element={<HomepageCard />} />
               <Route
-                path="/"
+                path="/dashboard"
                 element={
                   <Dashboard
                     fetchProductData={fetchProductData}

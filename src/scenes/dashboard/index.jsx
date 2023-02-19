@@ -9,10 +9,9 @@ import QueuePlayNextOutlinedIcon from '@mui/icons-material/QueuePlayNextOutlined
 import Header from "../../components/Header";
 import StatBox from "../../components/StatBox";
 import ProductTable from "./products"
-import AlarmOffOutlinedIcon from '@mui/icons-material/AlarmOffOutlined';
 import AlarmOnOutlinedIcon from '@mui/icons-material/AlarmOnOutlined';
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
-
+import MonitorHeartOutlinedIcon from '@mui/icons-material/MonitorHeartOutlined';
 
 const Dashboard = ({playAlarm, alarmPlaying, alarmAudio, setAlarmPlaying, fetchProductData, products, setProducts, productsLoaded}) => {
   const theme = useTheme();
@@ -21,6 +20,7 @@ const Dashboard = ({playAlarm, alarmPlaying, alarmAudio, setAlarmPlaying, fetchP
   const [email, setEmail] = useState("");
   const [alarmCount, setAlarmCount] = useState(1);
   const [monitorInterval, setMonitorInterval] = useState(1);
+  const [backendServerHeartbeat, setBackendServerHeartbeat] = useState(0);
   
   const stopAlarm = () => {
     alarmAudio.pause();
@@ -138,19 +138,19 @@ const Dashboard = ({playAlarm, alarmPlaying, alarmAudio, setAlarmPlaying, fetchP
           justifyContent="center"
         >
           <StatBox
-            title="1,325,134"
-            subtitle="Traffic Received"
+            title={backendServerHeartbeat}
+            subtitle="Server Heartbeat"
             progress="0.80"
             increase="+43%"
             icon={
-              <TrafficIcon
+              <MonitorHeartOutlinedIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
           />
         </Box>        
       </Box>
-      <ProductTable  fetchProductData={fetchProductData} alarmPlaying={alarmPlaying} playAlarm={playAlarm} stopAlarm={stopAlarm} products={products} setProducts={setProducts} productsLoaded={productsLoaded}/>
+      <ProductTable fetchProductData={fetchProductData} alarmPlaying={alarmPlaying} playAlarm={playAlarm} stopAlarm={stopAlarm} products={products} setProducts={setProducts} productsLoaded={productsLoaded} setBackendServerHeartbeat={setBackendServerHeartbeat}/>
     </Box>
     
   );
